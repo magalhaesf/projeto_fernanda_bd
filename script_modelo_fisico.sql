@@ -1,4 +1,4 @@
-/*DROP DATABASE;*/
+/*DROP DATABASE prova_banco;*/
 
 create database prova_banco;
  
