@@ -40,3 +40,17 @@ create table disciplina(
 	turma_fk int, foreign key(turma_fk) references turma(pk)
 );
 
+insert into professor (nome, disciplina) values ("Jhonatan", "Geografia");
+insert into professor (nome, disciplina) values ("Tiago", "Química");
+insert into professor (nome, disciplina) values ("Norberto", "Banco de Dados");
+insert into professor (nome, disciplina) values ("Gisele", "Matemática");
+insert into professor (nome, disciplina) values ("Sebastião", "Biologia");
+insert into professor (nome, disciplina) values ("Alexandre", "História");
+insert into professor (nome, disciplina) values ("Leandra", "Língua Inglesa");
+insert into professor (nome, disciplina) values ("Whesley", "Língua Portuguesa");
+insert into professor (nome, disciplina) values ("Fernanda", "Sociologia");
+insert into professor (nome, disciplina) values ("Karoline", "Educação Financeira");
+
+update professor set disciplina= "Língua Portuguesa" where pk=8;
+
+select * from professor;
