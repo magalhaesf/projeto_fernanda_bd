@@ -1,82 +1,79 @@
-/*DROP DATABASE prova_banco;*/
+/*drop database prova_bd;*/
 
-create database prova_banco;
- 
- use prova_banco;
+create database prova_bd;
+
+use prova_bd;
 
 create table professor(
-	pk int not null auto_increment, primary key(pk), 
-	nome varchar(255) not null,
-	disciplina varchar(255)
-);
-
-create table agenda_professor(
 	pk int not null auto_increment, primary key(pk),
-	disciplina varchar(255),
-	horario_aula varchar(255),
-	aula_dia int,
-	professor_fk int, foreign key(professor_fk) references professor(pk)
-);
-
-create table turma(
-	pk int not null auto_increment, primary key(pk), 
-	horario int,
-	capacidade int
-);
-
-create table grade_curricular(
-	pk int not null auto_increment, primary key(pk), 
-	carga_horaria_total varchar(255) not null,
-	turma_fk int, foreign key(turma_fk) references turma(pk),
-	agenda_professor_fk int, foreign key(agenda_professor_fk) references agenda_professor(pk)
+    nome varchar(255) not null, 
+    cpf varchar (45) not null
 );
 
 create table disciplina(
 	pk int not null auto_increment, primary key(pk),
-	nome varchar(255) not null,
-	professor varchar(255),
-	carga_horaria_total int,
-	professor_fk int, foreign key(professor_fk) references professor(pk),
-	turma_fk int, foreign key(turma_fk) references turma(pk)
+	nome varchar(255) not null, 
+    carga_horaria int,
+	professor_fk int, foreign key(professor_fk) references professor(pk)
 );
 
-insert into professor (nome, disciplina) values ("Jhonatan", "Geografia");
-insert into professor (nome, disciplina) values ("Tiago", "Química");
-insert into professor (nome, disciplina) values ("Norberto", "Banco de Dados");
-insert into professor (nome, disciplina) values ("Gisele", "Matemática");
-insert into professor (nome, disciplina) values ("Sebastião", "Biologia");
-insert into professor (nome, disciplina) values ("Alexandre", "História");
-insert into professor (nome, disciplina) values ("Leandra", "Língua Inglesa");
-insert into professor (nome, disciplina) values ("Whesley", "Língua Portuguesa");
-insert into professor (nome, disciplina) values ("Fernanda", "Sociologia");
-insert into professor (nome, disciplina) values ("Karoline", "Educação Financeira");
+create table turma(
+	pk int not null auto_increment, primary key(pk),
+    nome varchar(255) ,
+	sala varchar(10) 
+    );
 
-update professor set disciplina= "Língua Portuguesa" where pk=8;
-update professor set disciplina= "Língua Inglesa" where pk=7;
-update professor set disciplina= "Geografia" where pk=6;
+create table horario(
+	pk int not null auto_increment, primary key(pk),
+	dia_semana date,
+    posicao_aula varchar (255),
+	turma_fk int, foreign key(turma_fk) references turma(pk),
+	disciplina_fk int, foreign key(disciplina_fk) references disciplina(pk)
+);
+
+
+insert into professor ( nome,cpf) values ("Fernanda", "123.456.789-00");
+insert into professor ( nome,cpf) values ("Jorge", "014-615-639-09");
+insert into professor ( nome,cpf) values ("Mateus", "357-985-632-87");
+insert into professor ( nome,cpf) values ("Jurema", "654-987-428-90");
+insert into professor ( nome,cpf) values ("Beatriz", "145-458-783-33");
+
+update professor set nome= "Fernanda" where pk=2;
+update professor set nome= "Jorge" where pk=4;
+update professor set nome= "Beatrisz" where pk=3;
 
 select * from professor;
 
-insert into agenda_professor (disciplina, horario_aula, aula_dia, professor_fk) values ("Geografia", "segunda aula", 2, 1);
-insert into agenda_professor (disciplina, horario_aula, aula_dia, professor_fk) values ("História", "terceira aula", 3, 3);
-insert into agenda_professor (disciplina, horario_aula, aula_dia, professor_fk) values ("Artes", "quarta aula", 6, 2);
-insert into agenda_professor (disciplina, horario_aula, aula_dia, professor_fk) values ("Ciências", "primeira aula", 4, 5);
-insert into agenda_professor (disciplina, horario_aula, aula_dia, professor_fk) values ("Matemática", "quinta aula", 1, 4);
+insert into disciplina ( nome, carga_horaria, professor_fk) values ("Física", 1, 2);
+insert into disciplina ( nome, carga_horaria, professor_fk) values ("Matemática", 2, 1);
+insert into disciplina ( nome, carga_horaria, professor_fk) values ("Geografia", 4, 3);
+insert into disciplina ( nome, carga_horaria, professor_fk) values ("História", 3, 4);
+insert into disciplina ( nome, carga_horaria, professor_fk) values ("Artes", 2, 5);
 
-update agenda_professor set disciplina= "Geografia" where pk=5;
-update agenda_professor set disciplina= "Projeto de vida" where pk=1;
-update agenda_professor set disciplina= "Sociologia" where pk=3;
+update disciplina set nome= "Front-end" where pk=3;
+update disciplina set nome= "Geografia" where pk=2;
+update disciplina set nome= "Artes" where pk=4;
 
-select * from agenda_professor;
+select * from disciplina;
 
-insert into turma (horario, capacidade) values (3, 10);
-insert into turma (horario, capacidade) values (1, 14);
-insert into turma (horario, capacidade) values (2, 23);
-insert into turma (horario, capacidade) values (5, 12);
-insert into turma (horario, capacidade) values (6, 31);
+insert into turma ( nome,sala) values ("2 téc", "14");
+insert into turma ( nome,sala) values ("1 téc", "12");
+insert into turma ( nome,sala) values ("3 téc", "15");
+insert into turma ( nome,sala) values ("2 exatas", "20");
+insert into turma ( nome,sala) values ("2 humanas", "24");
 
-update turma set horario= "5" where pk=1;
-update turma set horario= "4" where pk=3;
-update turma set horario= "3" where pk=5;
+update turma set nome= "3 B" where pk=3;
+update turma set nome= "3 B" where pk=3;
+update turma set nome= "3 B" where pk=3;
 
 select * from turma;
+
+insert into horario( dia_semana, posisao_aula, turma_fk, disciplina_fk) values ("2024-03-14", "1", 2, 3);
+insert into horario( dia_semana, posisao_aula, turma_fk, disciplina_fk) values ("2024-04-30", "5", 1, 2);
+insert into horario( dia_semana, posisao_aula, turma_fk, disciplina_fk) values ("2024-05-16", "1", 3, 1);
+insert into horario( dia_semana, posisao_aula, turma_fk, disciplina_fk) values ("2024-07-10", "6", 4, 4);
+insert into horario( dia_semana, posisao_aula, turma_fk, disciplina_fk) values ("2024-09-12", "2", 5, 3);
+
+update horario set nome= "dia_semana" where pk=1;
+
+select * from horario;
