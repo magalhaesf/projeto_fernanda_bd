@@ -52,5 +52,24 @@ insert into professor (nome, disciplina) values ("Fernanda", "Sociologia");
 insert into professor (nome, disciplina) values ("Karoline", "Educação Financeira");
 
 update professor set disciplina= "Língua Portuguesa" where pk=8;
+update professor set disciplina= "Língua Inglesa" where pk=7;
+update professor set disciplina= "Geografia" where pk=6;
 
 select * from professor;
+
+insert into agenda_professor (disciplina, horario_aula, aula_dia, professor_fk) values ("Geografia", "segunda aula", 2, 1);
+insert into agenda_professor (disciplina, horario_aula, aula_dia, professor_fk) values ("História", "terceira aula", 3, 3);
+insert into agenda_professor (disciplina, horario_aula, aula_dia, professor_fk) values ("Artes", "quarta aula", 6, 2);
+insert into agenda_professor (disciplina, horario_aula, aula_dia, professor_fk) values ("Ciências", "primeira aula", 4, 5);
+insert into agenda_professor (disciplina, horario_aula, aula_dia, professor_fk) values ("Matemática", "quinta aula", 1, 4);
+
+update agenda_professor set disciplina= "Geografia" where pk=5;
+update agenda_professor set disciplina= "Projeto de vida" where pk=1;
+update agenda_professor set disciplina= "Sociologia" where pk=3;
+
+select * from agenda_professor;
+
+
+
+
+
