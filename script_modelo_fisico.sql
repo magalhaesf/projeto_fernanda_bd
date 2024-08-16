@@ -69,7 +69,14 @@ update agenda_professor set disciplina= "Sociologia" where pk=3;
 
 select * from agenda_professor;
 
+insert into turma (horario, capacidade) values (3, 10);
+insert into turma (horario, capacidade) values (1, 14);
+insert into turma (horario, capacidade) values (2, 23);
+insert into turma (horario, capacidade) values (5, 12);
+insert into turma (horario, capacidade) values (6, 31);
 
+update turma set horario= "5" where pk=1;
+update turma set horario= "4" where pk=3;
+update turma set horario= "3" where pk=5;
 
-
-
+select * from turma;
